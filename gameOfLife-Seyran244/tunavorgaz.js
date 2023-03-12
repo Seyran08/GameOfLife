@@ -1,7 +1,7 @@
-class Tunavorgaz {
+class Tunavorgaz extends LivingCreature{
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
+        super(x,y)
+       
         this.energy = 10;
         this.directions = [];
     }
