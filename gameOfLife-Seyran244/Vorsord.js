@@ -1,4 +1,8 @@
-class Vorsord extends LivingCreature {
+let LivingCreature = require('./LivingCreature')
+
+
+
+module.exports = class Vorsord extends LivingCreature {
     constructor(x, y) {
       super(x,y)
         this.energy = 10;
@@ -27,29 +31,11 @@ class Vorsord extends LivingCreature {
     }
     chooseCell(char) {
         this.getNewCoordinates();
-        let found = [];
-
-        for (let i in this.directions) {
-            let x = this.directions[i][0];
-            let y = this.directions[i][1];
-
-            if (y < matrix.length && y >= 0 && x < matrix[0].length && x >= 0) {
-                if (matrix[y][x] == char) {
-                    found.push(this.directions[i]);
-
-                }
-
-            }
-
-
-
-        }
-
-        return found;
+        return super.chooseCell(char)
     }
     krakel() {
         let emptyCell = this.chooseCell(2);
-        let newCell = random(emptyCell)
+        let newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)]
 
         if (newCell) {
             this.energy += 1;
@@ -83,7 +69,7 @@ class Vorsord extends LivingCreature {
 
     move() {
         let emptyCell = this.chooseCell(0);
-        let newCell = random(emptyCell)
+        let newCell = emptyCell[Math.floor(Math.random() * emptyCell.length)]
         console.log(newCell);
        
         if (newCell) {
